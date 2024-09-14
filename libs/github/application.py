@@ -1,4 +1,4 @@
-from .api.repository_reader import RepositoryReader
+from .api.repository_api import RepositoryApi
 
 
 class GithubAPI:
@@ -8,18 +8,8 @@ class GithubAPI:
         self._repo_name = repo_name
 
     @property
-    def repository(self) -> RepositoryReader:
-        return RepositoryReader(
+    def repository(self) -> RepositoryApi:
+        return RepositoryApi(
             user=self._user,
             repository=self._repo_name
         )
-
-
-if __name__ == '__main__':
-    github_api = GithubAPI(user="jak010", repo_name="cyber-skills")
-
-    latest_sha = github_api.repository.get_latest_sha_on_commit()
-
-    data = github_api.repository.get_added_file_by_latest_commits(latest_sha)
-    from pprint import pprint
-    pprint(data)
