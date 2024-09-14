@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
-from libs.github.application import GithubAPI
+from libs.github.github_api import GithubAPI
 from libs.http_requestor import HttpRequestProxy
 from libs.mkdown.parser import MarkDownParser
 from libs.tistory.tistory_rss_parser import TistoryRssParser
