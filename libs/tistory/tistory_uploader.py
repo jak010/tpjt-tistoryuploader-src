@@ -27,7 +27,6 @@ class TistoryUploader:
             cookies=self._cookies,
             json=self._upload_content(title=title, content=content)
         )
-
         return r.text
 
     def _upload_content(self, title: str, content: str = None):

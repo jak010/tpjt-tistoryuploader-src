@@ -16,7 +16,10 @@ gh = GithubAPI(
 )
 
 latest_commit_sha = gh.repository.get_latest_commit_history()
-addition_markdown_files = gh.repository.get_latest_commit_history_with_added_file_and_ext(sha=latest_commit_sha, file_ext="md")
+addition_markdown_files = gh.repository.get_latest_commit_history_with_added_file_and_ext(
+    sha=latest_commit_sha,
+    file_ext="md"
+)
 
 markdowns = [
     MarkDownParser(

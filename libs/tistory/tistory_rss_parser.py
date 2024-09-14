@@ -12,7 +12,6 @@ class TistoryRssParser:
     def get_channels(self):
         return self.element.findall("./channel")
 
-    @cached_property
     def get_items(self):
         """ Tisotry RSS 목록 리턴  """
         items = []
@@ -27,9 +26,11 @@ class TistoryRssParser:
         return items
 
     def uploadable_markdowns(self, markdown_parsers: List[MarkDownParser]) -> List[MarkDownParser]:
-        result = []
+        if not self.get_items():
+            return markdown_parsers
 
-        for rss_item in self.get_items:
+        result = []
+        for rss_item in self.get_items():
             for markdown_parser in markdown_parsers:
                 if markdown_parser.get_markdown_title() != rss_item['title']:
                     result.append(markdown_parser)
