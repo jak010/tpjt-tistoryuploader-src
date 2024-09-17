@@ -1,6 +1,6 @@
 from typing import List
 from xml.etree import ElementTree
-from ..mkdown.parser import MarkDownParser
+from ..mkdown.parser import MarkDownContent
 from functools import cached_property
 
 
@@ -25,13 +25,10 @@ class TistoryRssParser:
                 )
         return items
 
-    def uploadable_markdowns(self, markdown_parsers: List[MarkDownParser]) -> List[MarkDownParser]:
+    def is_uploadable_markdown_content(self, markdown_content: MarkDownContent) -> MarkDownContent:
         if not self.get_items():
-            return markdown_parsers
+            return markdown_content
 
-        result = []
         for rss_item in self.get_items():
-            for markdown_parser in markdown_parsers:
-                if markdown_parser.get_markdown_title() != rss_item['title']:
-                    result.append(markdown_parser)
-        return result
+            if markdown_content.get_markdown_title() != rss_item['title']:
+                return markdown_content
