@@ -5,25 +5,26 @@ import requests
 
 from ..base.abstract_api import AbstractAPI
 from ..dto.addition_file_dto import AdditionFileDto
+from ..dto.github_user_info import GithubUserInfo
 
 
 class RepositoryPrivateApi(AbstractAPI):
-    _base_url = "https://api.github.com/repos"
 
-    def __init__(self, user, repository, repository_type: str = None, github_token: str = None):
-        self.repository_type = repository_type
+    def __init__(self, user_info: GithubUserInfo):
         super().__init__(
-            user=user,
-            repository=repository,
-            token=github_token
+            user_info=user_info
         )
+
+    @property
+    def _base_url(self):
+        return "https://api.github.com/repos" + self.repo_dsn
 
     def get_commits(self) -> List[Dict]:
         """ 최근 커밋 목록 읽기 """
         _suffix_url = "/commits"
 
         r = requests.get(
-            self._base_url + self.repo_dsn + _suffix_url,
+            self._base_url + _suffix_url,
             headers=self.headers
         )
 
@@ -41,10 +42,9 @@ class RepositoryPrivateApi(AbstractAPI):
         _suffix_url = f"/commits/{sha}"
 
         response = requests.get(
-            self._base_url + self.repo_dsn + _suffix_url,
+            self._base_url + _suffix_url,
             headers=self.headers
         )
-
         if response.status_code != 200:
             response.raise_for_status()
 
@@ -53,8 +53,8 @@ class RepositoryPrivateApi(AbstractAPI):
     def get_file_content(self, addition_file_dto: AdditionFileDto):
         """ Private Repository의 Permanent URL에 접근하기 """
         r = requests.get(
-            self._base_url + self.repo_dsn + "/contents/" + addition_file_dto.file_name,
-            headers={"Authorization": f"token {self.token}"}
+            self._base_url + "/contents/" + addition_file_dto.file_name,
+            headers=self.headers
         )
         if r.status_code != 200:
             r.raise_for_status()

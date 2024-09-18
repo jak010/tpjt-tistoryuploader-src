@@ -8,6 +8,6 @@ class RepositoryType(Enum):
     @classmethod
     def of(cls, value):
         if value == cls.PUBLIC.value:
-            return RepositoryType.PUBLIC
+            return RepositoryType.PUBLIC.value
         if value == cls.PRIVATE.value:
-            return RepositoryType.PRIVATE
+            return RepositoryType.PRIVATE.value

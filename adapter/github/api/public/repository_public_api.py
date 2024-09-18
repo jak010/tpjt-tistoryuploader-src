@@ -5,17 +5,15 @@ import requests
 
 from ..base.abstract_api import AbstractAPI
 from ..dto.addition_file_dto import AdditionFileDto
+from ..dto.github_user_info import GithubUserInfo
 
 
 class RepositoryPublicApi(AbstractAPI):
     _base_url = "https://api.github.com/repos"
 
-    def __init__(self, user, repository, repository_type: str = None, github_token: str = None):
-        self.repository_type = repository_type
+    def __init__(self, user_info: GithubUserInfo):
         super().__init__(
-            user=user,
-            repository=repository,
-            token=github_token
+            user_info=user_info
         )
 
     def get_commits(self) -> List[Dict]:
@@ -80,6 +78,6 @@ class RepositoryPublicApi(AbstractAPI):
     def get_file_content(self, addition_file_dto: AdditionFileDto):
         resp = requests.get(addition_file_dto.raw_url)
         if resp.status_code == 200:
-            return resp.content
+            return resp.text
 
         resp.raise_for_status()
