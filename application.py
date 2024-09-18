@@ -36,6 +36,7 @@ class Application:
         )
 
         markdown_content = MarkDownContent(github_file_content)
+
         if self.tistory_parser.is_uploadable_markdown(title=markdown_content.get_title()):
             self.tistory_uploader.execute(
                 title=markdown_content.get_title(),

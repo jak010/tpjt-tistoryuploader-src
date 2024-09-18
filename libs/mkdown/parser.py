@@ -8,7 +8,7 @@ class MarkDownContent:
         self.content = content
 
     def get_title(self) -> str:
-        soup = BeautifulSoup(self.get_html, "html.parser")
+        soup = BeautifulSoup(self.get_html(), "html.parser")
         if soup.find("h1"):
             return soup.find("h1").text
 
