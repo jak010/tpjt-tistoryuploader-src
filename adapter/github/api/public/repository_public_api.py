@@ -75,9 +75,9 @@ class RepositoryPublicApi(AbstractAPI):
 
         return result
 
-    def get_file_content(self, addition_file_dto: AdditionFileDto):
-        resp = requests.get(addition_file_dto.raw_url)
-        if resp.status_code == 200:
-            return resp.text
-
-        resp.raise_for_status()
+    # def get_file_content(self, addition_file_dto: AdditionFileDto):
+    #     resp = requests.get(addition_file_dto.raw_url)
+    #     if resp.status_code == 200:
+    #         return resp.text
+    #
+    #     resp.raise_for_status()

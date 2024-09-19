@@ -31,11 +31,10 @@ class Application:
             file_ext="md"
         )
 
-        github_file_content = self.github_api_adapater.repository.get_file_content(
-            addition_file_dto=addition_markdown_files[0]
+        markdown_content = MarkDownContent(
+            title=addition_markdown_files[0].get_file_name(),
+            raw_url=addition_markdown_files[0].get_raw_url()
         )
-
-        markdown_content = MarkDownContent(github_file_content)
 
         if self.tistory_parser.is_uploadable_markdown(title=markdown_content.get_title()):
             self.tistory_uploader.execute(
