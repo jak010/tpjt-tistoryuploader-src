@@ -30,7 +30,7 @@ class ChromeDriver(AbstractDriver):
     def build(cls, executable_path: str = None, option: AbstractOption = None):
         if cls._instance is None:
             cls._instance = Chrome(
-                service=Service(executable_path=executable_path) if executable_path else "/usr/local/bin/chromedriver",
+                service=Service(executable_path=executable_path) if executable_path is not None else "/usr/local/bin/chromedriver",
                 options=option.build() if option else None
             )
             return cls()
