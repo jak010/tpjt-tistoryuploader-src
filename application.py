@@ -48,12 +48,16 @@ class Application:
                 kakao_id=os.environ["KAKAO_ID"],
                 kakao_pw=os.environ["KAKAO_PW"]
             )
-            tssession = [cookie["value"] for cookie in tistory_login_cookies if cookie['name'] == 'TSSESSION'][0]
+
+            tssession = [
+                cookie["value"] for cookie in tistory_login_cookies
+                if cookie['name'] == 'TSSESSION'
+            ]
 
             TistoryUploader.execute(
                 title=markdown_content.get_title(),
                 content=markdown_content.get_html(),
-                tssession=tssession,
+                tssession=tssession[0],
                 tistory_domain=os.environ['TISTORY_BLOG_DOMAIN']
             )
 
@@ -70,10 +74,11 @@ if __name__ == '__main__':
         ),
         tistory_oauth_executer=OauthLoginExecuter(
             driver=ChromeDriver.build(
-                executable_path="/usr/local/bin/chromedriver",
+                executable_path=None,
                 option=ChromeOption(
-                    window_size_width=720,
-                    window_size_height=680
+                    window_size_width=780,
+                    window_size_height=620,
+                    headless_allowed=False
                 )
             )
         ),

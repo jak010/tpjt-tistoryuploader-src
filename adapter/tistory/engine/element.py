@@ -1,3 +1,4 @@
+import time
 from abc import ABCMeta, abstractmethod
 
 from selenium.webdriver.common.by import By
@@ -31,7 +32,7 @@ class KaKaoInputIdElement(AbstractElement):
     _element = "loginId"
     _element_type = By.NAME
 
-    def input_element(self, value: str):
+    def execute(self, value: str):
         element = self.element()
         element.send_keys(value)
 
@@ -42,7 +43,7 @@ class KaKaoInputPasswordElement(AbstractElement):
     _element = "password"
     _element_type = By.NAME
 
-    def input_element(self, value):
+    def execute(self, value):
         element = self.element()
         element.send_keys(value)
 
@@ -50,15 +51,17 @@ class KaKaoInputPasswordElement(AbstractElement):
 class KaKaoLoginConfirmButtonElement(AbstractElement):
     """ KaKao Password Element """
 
-    _element = '//*[@id="mainContent"]/div/div/form/div[4]/button[1]'  # 780x680
-    _element_type = By.XPATH
+    _element = 'confirm_btn'  # 780x680
+    _element_type = By.CLASS_NAME
 
-    def click(self):
-        element = self.element()
-        element.click()
+    def execute(self):
+        self.element().click()
 
 
 class KaKaoTistoryProfileElement(AbstractElement):
     """ KaKao/Tistory Profilx Box Element """
     _element = "inner_marticle_right"
     _element_type = By.CLASS_NAME
+
+    def execute(self):
+        return self.element()
