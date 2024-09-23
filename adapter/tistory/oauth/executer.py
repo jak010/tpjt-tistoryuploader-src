@@ -1,11 +1,11 @@
-from engine.driver import AbstractDriver
-from engine.element import (
+from .login_requet import LoginRequest
+from ..engine.driver import AbstractDriver
+from ..engine.element import (
     KaKaoInputIdElement,
     KaKaoInputPasswordElement,
     KaKaoTistoryProfileElement,
     KaKaoLoginConfirmButtonElement
 )
-from oauth.login_requet import LoginRequest
 
 
 class OauthLoginExecuter:
