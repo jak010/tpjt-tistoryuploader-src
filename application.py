@@ -70,7 +70,7 @@ if __name__ == '__main__':
         ),
         tistory_oauth_executer=OauthLoginExecuter(
             driver=ChromeDriver.build(
-                executable_path=None,
+                executable_path="/usr/local/bin/chromedriver",
                 option=ChromeOption(
                     window_size_width=720,
                     window_size_height=680
