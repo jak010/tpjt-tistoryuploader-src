@@ -48,6 +48,7 @@ class Application:
                 kakao_id=os.environ["KAKAO_ID"],
                 kakao_pw=os.environ["KAKAO_PW"]
             )
+            print("Login 성공")
 
             tssession = [
                 cookie["value"] for cookie in tistory_login_cookies
@@ -77,8 +78,7 @@ if __name__ == '__main__':
                 executable_path="/usr/local/bin/chromedriver",
                 option=ChromeOption(
                     window_size_width=780,
-                    window_size_height=620,
-                    headless_allowed=False
+                    window_size_height=620
                 )
             )
         ),
