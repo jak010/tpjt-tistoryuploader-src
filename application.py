@@ -6,11 +6,11 @@ from dotenv import load_dotenv
 from adapter.github.github_adapter import (
     GithubAPIAdapter
 )
+from adapter.tistory.engine.driver import ChromeDriver
+from adapter.tistory.engine.options import ChromeOption
 from adapter.tistory.oauth.executer import OauthLoginExecuter
 from adapter.tistory.rss.tistory_rss_parser import TistoryRss
 from adapter.tistory.upload.tistory_uploader import TistoryUploader
-from engine.driver import ChromeDriver
-from engine.options import ChromeOption
 from libs.mkdown.parser import MarkDownContent
 
 load_dotenv()
