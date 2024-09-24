@@ -22,7 +22,8 @@ class LoginRequest:
             "Accept-Encoding": "gzip, deflate",
             "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
             "Priority": "u=0, i",
-            "Connection": "close"
+            "Connection": "close",
+            "X-Forwareded-For": "175.116.231.75"
         }
 
     def execute(self):
