@@ -8,17 +8,17 @@ class AbstractOption(metaclass=ABCMeta):
     def __init__(self,
                  window_size_width: int,
                  window_size_height: int,
-                 headless_allowed: bool = True,
-                 sandbox_allowed: bool = True,
-                 disable_gpu_allowed: bool = True,
-                 disable_dev_shm_usage: bool = True
+                 allowed_headless: bool = True,
+                 allowed_sandbox: bool = True,
+                 allowed_disable_gpu: bool = True,
+                 allowed_disable_dev_shm_usage: bool = True
                  ):
         self.window_size_width = window_size_width
         self.window_size_height = window_size_height
-        self.headless_allowed: bool = headless_allowed
-        self.allowed_sandbox: bool = sandbox_allowed
-        self.allowed_disable_gpu: bool = disable_gpu_allowed
-        self.allowed_disable_dev_shm_usage: bool = disable_dev_shm_usage
+        self.allowed_headless: bool = allowed_headless
+        self.allowed_sandbox: bool = allowed_sandbox
+        self.allowed_disable_gpu: bool = allowed_disable_gpu
+        self.allowed_disable_dev_shm_usage: bool = allowed_disable_dev_shm_usage
 
     @abstractmethod
     def build(self, **kwargs): ...
@@ -37,7 +37,7 @@ class ChromeOption(AbstractOption):
         options.add_argument(
             f"--window-size={self.window_size_width},{self.window_size_height}"
         )
-        if self.headless_allowed:
+        if self.allowed_headless:
             options.add_argument("--headless")
         if self.allowed_sandbox:
             options.add_argument("--no-sandbox")

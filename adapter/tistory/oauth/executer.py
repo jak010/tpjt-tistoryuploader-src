@@ -1,9 +1,11 @@
+import time
+
 from .login_requet import LoginRequest
 from ..engine.driver import AbstractDriver
 from ..engine.element import (
     KaKaoInputIdElement,
     KaKaoInputPasswordElement,
-    KaKaoTistoryProfileElement,
+    KaKaoTistoryMyInfoElement,
     KaKaoLoginConfirmButtonElement
 )
 
@@ -27,7 +29,9 @@ class OauthLoginExecuter:
         kakao_login_confirm_button_element = KaKaoLoginConfirmButtonElement(self._driver.get_instance())
         kakao_login_confirm_button_element.execute()
 
-        kakao_tistory_pofile_element = KaKaoTistoryProfileElement(self._driver.get_instance())
+        kakao_tistory_pofile_element = KaKaoTistoryMyInfoElement(self._driver.get_instance())
         kakao_tistory_pofile_element.execute()
+
+        time.sleep(60)
 
         return self._driver.get_cookies()

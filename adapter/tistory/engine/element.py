@@ -25,7 +25,7 @@ class BaseElement(metaclass=ABCMeta):
         return element
 
     def _element_log(self):
-        print(f"[*]{self.__class__.__name__}")
+        print(f"[PASS ELEMENT]:{self.__class__.__name__}")
 
 
 class KaKaoInputIdElement(BaseElement):
@@ -59,9 +59,9 @@ class KaKaoLoginConfirmButtonElement(BaseElement):
         self.element().click()
 
 
-class KaKaoTistoryProfileElement(BaseElement):
+class KaKaoTistoryMyInfoElement(BaseElement):
     """ KaKao/Tistory Profilx Box Element """
-    _element = "inner_marticle_right"
+    _element = "my_info"
     _element_type = By.CLASS_NAME
 
     def execute(self):
