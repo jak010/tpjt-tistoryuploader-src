@@ -1,14 +1,11 @@
-import time
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.remote.webdriver import WebDriver
 
-from .driver import AbstractDriver
-
-LOADING_TIME_LIMIT = 10
+LOADING_TIME_LIMIT = 30
 
 
 class AbstractElement(metaclass=ABCMeta):
