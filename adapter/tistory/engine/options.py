@@ -16,9 +16,9 @@ class AbstractOption(metaclass=ABCMeta):
         self.window_size_width = window_size_width
         self.window_size_height = window_size_height
         self.headless_allowed: bool = headless_allowed
-        self.sandbox_allowed: bool = sandbox_allowed
-        self.disable_gpu_allowed: bool = disable_gpu_allowed
-        self.disable_dev_shm_usage: bool = disable_dev_shm_usage
+        self.allowed_sandbox: bool = sandbox_allowed
+        self.allowed_disable_gpu: bool = disable_gpu_allowed
+        self.allowed_disable_dev_shm_usage: bool = disable_dev_shm_usage
 
     @abstractmethod
     def build(self, **kwargs): ...
@@ -39,10 +39,10 @@ class ChromeOption(AbstractOption):
         )
         if self.headless_allowed:
             options.add_argument("--headless")
-        if self.sandbox_allowed:
+        if self.allowed_sandbox:
             options.add_argument("--no-sandbox")
-        if self.disable_gpu_allowed:
+        if self.allowed_disable_gpu:
             options.add_argument("--disable-gpu")
-        if self.disable_dev_shm_usage:
+        if self.allowed_disable_dev_shm_usage:
             options.add_argument("--disable-dev-shm-usage")
         return options

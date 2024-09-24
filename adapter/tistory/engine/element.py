@@ -5,7 +5,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 
-LOADING_TIME_LIMIT = 30
+ELEMENT_LOADING_WAIT_TIME_SECONDS = 30
 
 
 class AbstractElement(metaclass=ABCMeta):
@@ -16,7 +16,7 @@ class AbstractElement(metaclass=ABCMeta):
         self.driver = driver
 
     def element(self):
-        element = WebDriverWait(self.driver, LOADING_TIME_LIMIT).until(
+        element = WebDriverWait(self.driver, ELEMENT_LOADING_WAIT_TIME_SECONDS).until(
             ec.presence_of_element_located(
                 (self._element_type, self._element)
             )

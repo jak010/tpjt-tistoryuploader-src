@@ -34,7 +34,10 @@ class Application:
             kakao_id=os.environ["KAKAO_ID"],
             kakao_pw=os.environ["KAKAO_PW"]
         )
-        print("Login 성공")
+        tssession = [
+            cookie["value"] for cookie in tistory_login_cookies
+            if cookie['name'] == 'TSSESSION'
+        ]
 
         addition_markdown_files = self.github_api_adapater.repository.get_latest_history_with_added_file_and_ext(
             sha=self.github_api_adapater.repository.get_latest_commit(),
@@ -50,11 +53,6 @@ class Application:
         )
 
         if self.tistory_parser.is_uploadable_markdown(title=markdown_content.get_title()):
-            tssession = [
-                cookie["value"] for cookie in tistory_login_cookies
-                if cookie['name'] == 'TSSESSION'
-            ]
-
             TistoryUploader.execute(
                 title=markdown_content.get_title(),
                 content=markdown_content.get_html(),
@@ -78,7 +76,7 @@ if __name__ == '__main__':
                 executable_path="/usr/local/bin/chromedriver",
                 option=ChromeOption(
                     window_size_width=780,
-                    window_size_height=620
+                    window_size_height=620,
                 )
             )
         ),
