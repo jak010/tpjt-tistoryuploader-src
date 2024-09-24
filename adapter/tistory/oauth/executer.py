@@ -1,5 +1,3 @@
-import time
-
 from .login_requet import LoginRequest
 from ..engine.driver import AbstractDriver
 from ..engine.element import (

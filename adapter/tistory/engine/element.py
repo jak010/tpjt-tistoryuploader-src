@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 ELEMENT_LOADING_WAIT_TIME_SECONDS = 30
 
 
-class AbstractElement(metaclass=ABCMeta):
+class BaseElement(metaclass=ABCMeta):
     _element = None
     _element_type = None
 
@@ -21,10 +21,14 @@ class AbstractElement(metaclass=ABCMeta):
                 (self._element_type, self._element)
             )
         )
+        self._element_log()
         return element
 
+    def _element_log(self):
+        print(f"[*]{self.__class__.__name__}")
 
-class KaKaoInputIdElement(AbstractElement):
+
+class KaKaoInputIdElement(BaseElement):
     """ KaKao Id 입력하기 """
     _element = "loginId"
     _element_type = By.NAME
@@ -34,7 +38,7 @@ class KaKaoInputIdElement(AbstractElement):
         element.send_keys(value)
 
 
-class KaKaoInputPasswordElement(AbstractElement):
+class KaKaoInputPasswordElement(BaseElement):
     """ KaKao Password Element """
 
     _element = "password"
@@ -45,7 +49,7 @@ class KaKaoInputPasswordElement(AbstractElement):
         element.send_keys(value)
 
 
-class KaKaoLoginConfirmButtonElement(AbstractElement):
+class KaKaoLoginConfirmButtonElement(BaseElement):
     """ KaKao Password Element """
 
     _element = 'confirm_btn'  # 780x680
@@ -55,7 +59,7 @@ class KaKaoLoginConfirmButtonElement(AbstractElement):
         self.element().click()
 
 
-class KaKaoTistoryProfileElement(AbstractElement):
+class KaKaoTistoryProfileElement(BaseElement):
     """ KaKao/Tistory Profilx Box Element """
     _element = "inner_marticle_right"
     _element_type = By.CLASS_NAME
