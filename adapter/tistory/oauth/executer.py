@@ -32,6 +32,4 @@ class OauthLoginExecuter:
         kakao_tistory_pofile_element = KaKaoTistoryMyInfoElement(self._driver.get_instance())
         kakao_tistory_pofile_element.execute()
 
-        time.sleep(60)
-
         return self._driver.get_cookies()
