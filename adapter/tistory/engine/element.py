@@ -5,7 +5,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
 
-ELEMENT_LOADING_WAIT_TIME_SECONDS = 30
+ELEMENT_LOADING_WAIT_TIME_SECONDS = 90
 
 
 class BaseElement(metaclass=ABCMeta):
