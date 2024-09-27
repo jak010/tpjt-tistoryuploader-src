@@ -32,7 +32,7 @@ class ChromeOption(AbstractOption):
     ) -> ChromeOptions:
         options = ChromeOptions()
         options.add_argument(
-            "user-agent" + self._USER_AGENT,
+            f"--user-agent={self._USER_AGENT}",
         )
         options.add_argument(
             f"--window-size={self.window_size_width},{self.window_size_height}"

@@ -20,6 +20,9 @@ class AbstractDriver(metaclass=ABCMeta):
     def get_cookies(self): ...
 
     @abstractmethod
+    def get_user_agent(self): ...
+
+    @abstractmethod
     def move(self, url): ...
 
 
@@ -41,6 +44,9 @@ class ChromeDriver(AbstractDriver):
 
     def get_cookies(self):
         return self._instance.get_cookies()
+
+    def get_user_agent(self):
+        return self.get_instance().execute_script("return navigator.userAgent")
 
     def move(self, url):
         self._instance.get(url)
