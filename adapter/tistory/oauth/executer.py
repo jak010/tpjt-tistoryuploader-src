@@ -19,6 +19,7 @@ class OauthLoginExecuter:
         login_request = LoginRequest()
 
         self._driver.move(login_request.execute())
+        print(self._driver.get_display_size())
 
         kakao_input_id_element = KaKaoInputIdElement(self._driver.get_instance())
         kakao_input_id_element.execute(value=kakao_id)

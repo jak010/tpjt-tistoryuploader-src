@@ -23,6 +23,9 @@ class AbstractDriver(metaclass=ABCMeta):
     def get_user_agent(self): ...
 
     @abstractmethod
+    def get_display_size(self): ...
+
+    @abstractmethod
     def move(self, url): ...
 
 
@@ -47,6 +50,9 @@ class ChromeDriver(AbstractDriver):
 
     def get_user_agent(self):
         return self.get_instance().execute_script("return navigator.userAgent")
+
+    def get_display_size(self):
+        return self.get_instance().get_window_size()
 
     def move(self, url):
         self._instance.get(url)
